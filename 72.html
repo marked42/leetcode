@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+
+<html>
+  <script>
+    var minDistance = function(word1, word2) {
+      function minDistance1(word1, word2) {
+        const ROW_COUNT = word1.length + 1
+        const COL_COUNT = word2.length + 1
+
+        const dp = new Array(ROW_COUNT)
+        for (let row = 0; row < ROW_COUNT; row++) {
+          dp[row] = new Array(COL_COUNT)
+          dp[row][0] = row
+        }
+        for (let col = 1; col < COL_COUNT; col++) {
+          dp[0][col] = col
+        }
+
+        for (let row = 1; row < ROW_COUNT; row++) {
+          for (let col = 1; col < COL_COUNT; col++) {
+            const left = dp[row][col-1] + 1
+            const top = dp[row-1][col] + 1
+            const same = word1.charAt(row - 1) === word2.charAt(col - 1)
+            const diag = dp[row-1][col-1] + (same ? 0 : 1)
+            dp[row][col] = Math.min(left, top, diag)
+          }
+        }
+
+        return dp[ROW_COUNT-1][COL_COUNT-1]
+      }
+
+      return minDistance1(word1, word2)
+    };
+
+    minDistance('horse', 'ros')
+  </script>
+</html>

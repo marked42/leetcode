@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <script>
+var longestPalindrome = function(s) {
+  let dp = new Array(s.length)
+  for (let i = 0; i < s.length; i++) {
+    dp[i] = new Array(s.length)
+  }
+
+  let maxLen = 0;
+  let maxSubstr = ''
+
+  for (let len = 1; len <= s.length; len++) {
+    for (let start = 0; start < s.length; start++) {
+      let end = start + len - 1
+      if (end >= s.length) {
+        break
+      }
+
+      dp[start][end] = len === 1 || len === 2 || dp[start+1][end-1] && s.charAt(start) === s.charAt(end)
+
+      if (dp[start][end] && len > maxLen) {
+        maxLen = len
+        maxSubstr = s.substring(start, end + 1)
+      }
+    }
+  }
+
+  return maxSubstr
+};
+
+    console.log(longestPalindrome("abc"))
+  </script>
+</html>

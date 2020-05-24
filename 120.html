@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <script>
+
+    var minimumTotal = function(triangle) {
+      let dp = new Array(triangle.length)
+      dp[0] = triangle[0][0]
+      let oldDp = new Array(triangle.length)
+      oldDp[0] = triangle[0][0]
+
+      for (let row = 1; row < triangle.length; row++) {
+        dp[0] = triangle[row][0] + oldDp[0]
+        for (let col = 1; col < row; col++) {
+          dp[col] = triangle[row][col] + Math.min(oldDp[col-1], oldDp[col])
+        }
+        dp[row] = triangle[row][row] + oldDp[row-1]
+
+        // switch dp and oldDp each iteration
+        if (row < triangle.length - 1) {
+          let temp = dp
+          dp = oldDp
+          oldDp = temp
+        }
+      }
+
+      return Math.min(...dp)
+    };
+
+    const triangle = [
+        [2],
+        [3,4],
+      [6,5,7],
+      [4,1,8,3]
+    ]
+
+    console.log(minimumTotal(triangle))
+  </script>
+</html>

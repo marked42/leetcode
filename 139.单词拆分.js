@@ -15,12 +15,14 @@ var wordBreak = function(s, wordDict) {
   dp[0] = true
   dp.fill(false, 1)
 
+  const breakpoints = []
   for (let i = 1; i < dp.length; i++) {
+    breakpoints[i] = []
     for (let word of wordDict) {
       const j = i - word.length
       if (dp[j] && word === s.substring(j, i)) {
         dp[i] = true
-        break
+        breakpoints[i].push(j)
       }
     }
   }

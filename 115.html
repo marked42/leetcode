@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <script>
+
+var numDistinct = function(s, t) {
+  const ROW_COUNT = t.length + 1
+  const COL_COUNT = s.length + 1
+
+  const dp = new Array(ROW_COUNT)
+  for (let row = 0; row < ROW_COUNT; row++) {
+    dp[row] = new Array(COL_COUNT)
+    dp[row][0] = 0
+  }
+  dp[0].fill(1)
+
+  for (let row = 1; row < ROW_COUNT; row++) {
+    for (let col = 1; col < COL_COUNT; col++) {
+      dp[row][col] = t[row-1] !== s[col-1] ? dp[row][col-1] : (dp[row][col-1] + dp[row-1][col-1])
+    }
+  }
+
+  return dp[ROW_COUNT-1][COL_COUNT-1]
+};
+
+
+var numDistinct1 = function(s, t) {
+  const dp = new Array(t.length + 1)
+  dp[0] = 1
+  dp.fill(0, 1)
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = t.length; j >= 1; j--) {
+      const row = s[i-1]
+      const col = t[j-1]
+      dp[j] += s[i-1] === t[j-1] ? dp[j-1] : 0
+    }
+  }
+
+  return dp[t.length]
+};
+
+console.log(numDistinct1("rabbbit", "rabbit"))
+
+  </script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+  <script>
+    // function compose(array, path, result) {
+    //   if (path.length === array.length) {
+    //     result.push([...path])
+    //     return
+    //   }
+
+    //   for (const val of array[path.length]) {
+    //     path.push(val)
+    //     compose(array, path, result)
+    //     path.pop(val)
+    //   }
+    // }
+    // const result = []
+    // const path = []
+    // const array = [
+    //   ['IPhone X', 'IPhone XS'],
+    //   ['black', 'white'],
+    //   ['64g', '256g'],
+    // ]
+    // compose(array, path, result)
+
+    // console.table(result)
+
+    var combine = function(n, k) {
+      if (k === 0) {
+        return [[]]
+      }
+
+      if (k >= n) {
+        return [Array.from({ length: n }).map((_, i) => i + 1)]
+      }
+
+      return [
+        ...combine(n-1, k-1).map(val => [...val, n]),
+        ...combine(n-1, k),
+      ]
+    };
+    // const val = combine(4,2)
+    // console.table(val)
+
+    var combine1 = function(n, k) {
+      result = []
+      let i = 0;
+      const p = new Array(k).fill(0)
+      while (i >= 0) {
+        p[i]++;
+        if (p[i] > n) --i;
+        else if (i == k - 1) result.push(p);
+        else {
+            ++i;
+            p[i] = p[i - 1];
+        }
+      }
+      return result;
+    }
+
+    console.table(combine1(4, 2))
+  </script>
+</html>

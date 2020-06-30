@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <script>
+  var nextGreaterElements = function(nums) {
+  const minStack = []
+  const result = new Array(nums.length * 2).fill(-1)
+
+  for (let i = 0; i < 2 * nums.length; i++) {
+    while (minStack.length > 0 && nums[i % nums.length] > nums[minStack[minStack.length - 1] % nums.length]) {
+      result[minStack.pop()] = nums[i % nums.length]
+    }
+    minStack.push(i)
+  }
+
+  return result.slice(0, nums.length)
+}
+
+  console.log(nextGreaterElements([1,2,1]))
+  </script>
+</html>

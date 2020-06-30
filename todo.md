@@ -1,5 +1,15 @@
 # TODO
 
+## 一维动态规划
+
+### 70 爬楼梯 / 746 最小花费爬楼梯 / fib /
+
+拓展为[三步爬楼梯问题](https://leetcode-cn.com/problems/three-steps-problem-lcci/solution/)
+
+### 91 解码方法
+### 639 解码方法2
+### 198 打家劫舍
+
 # 53 最大子序列和
 
 https://leetcode-cn.com/problems/maximum-subarray/solution/zui-da-zi-xu-he-cshi-xian-si-chong-jie-fa-bao-li-f/
@@ -58,9 +68,48 @@ f(i,j) = s1[i] === s3[i+j+1] && f(i-1,j) || s2[j] === s3[i+j+1] && f(i, j-1)
 
 三维dp，为什么不能排序对比？
 
-## 91 解码方法
-## 639 解码方法2
-
 ## 139/140 单词拆分
 
 dfs遍历凑出结果
+
+## 115 不同的子序列/392判断子序列
+
+1. 分治解法
+1. 二维动态规划
+1. 可以状态压缩的状态转移条件、一维动归数组逆序求值
+
+https://leetcode.wang/leetcode-115-Distinct-Subsequences.html
+
+## 392 判断子序列
+
+1. 双指针
+1. 遍历目标字符串
+1. 预处理
+1. 动态规划
+
+## 单调栈相关问题
+
+84,85,221,1127,764,42, 739,496,503,556,
+
+1. 栈严格（非严格）递增（递减），进栈/出栈，从左到右遍历，从右到左遍历，
+1. 求数组中下表为i的元素左边最近的小于i的元素位置
+1. 求数组中下标为i的元素右边至少多少步找到一个大于i的元素
+
+1. https://www.cnblogs.com/grandyang/p/8887985.html
+1. https://zhuanlan.zhihu.com/p/26465701
+
+## 排列组合算法
+
+1. SKU全排列，深度遍历，递归
+
+```js
+    const array = [
+      ['IPhone X', 'IPhone XS'],
+      ['black', 'white'],
+      ['64g', '256g'],
+    ]
+```
+1. 字典序
+1. 31
+1. https://juejin.im/post/5de7c053518825125d1497e2
+1. 77 回溯法、回溯转换为迭代实现，递归（f(n, k) = f(n-1, k-1), f(n-1, k) 分解， 转化为动态规划，
